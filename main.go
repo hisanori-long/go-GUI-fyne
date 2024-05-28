@@ -9,20 +9,16 @@ func main() {
 	a := app.New()
 	w := a.NewWindow("Hello")
 	l := widget.NewLabel("Hello Fyne!")
-	r := widget.NewRadio(
-		[]string{"One", "Two", "Three"},
-		func(s string) {
-			if s == "" {
-				l.SetText("Not selected")
-			} else {
-				l.SetText("Selected: " + s)
-			}
-		})
-	r.SetSelected("One")
+	sl := widget.NewSelect([]string{
+		"Red", "Green", "Blue",
+	}, func(s string) {
+		l.SetText("Selected: " + s)
+	})
 	w.SetContent(
 		widget.NewVBox(
-			l, r,
+			l, sl,
 		),
 	)
+
 	w.ShowAndRun()
 }
