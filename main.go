@@ -10,17 +10,22 @@ import (
 func main() {
 	a := app.New()
 	w := a.NewWindow("Hello")
-	bt := widget.NewButton("Top", nil)
-	bb := widget.NewButton("Bottom", nil)
-	bl := widget.NewButton("Left", nil)
-	br := widget.NewButton("Right", nil)
 	w.SetContent(
 		fyne.NewContainerWithLayout(
-			layout.NewBorderLayout(
-				bt, br, bl, bb,
-			),
-			bt, bb, bl, br,
-			widget.NewLabel("Center."),
+			layout.NewGridLayout(3),
+			widget.NewButton("One", nil),
+			widget.NewButton("Two", nil),
+			widget.NewButton("Three", nil),
+			widget.NewButton("Four", nil),
+			layout.NewSpacer(),
+			widget.NewButton("Five", nil),
+			widget.NewButton("Six", nil),
+			widget.NewButton("Seven", nil),
+			widget.NewButton("Eight", nil),
+			layout.NewSpacer(),
+			widget.NewButton("Nine", nil),
+			widget.NewButton("Ten", nil),
+			widget.NewButton("Eleven", nil),
 		),
 	)
 	w.ShowAndRun()
