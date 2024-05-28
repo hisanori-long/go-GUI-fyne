@@ -1,28 +1,34 @@
 package main
 
 import (
+	"fyne.io/fyne"
 	"fyne.io/fyne/app"
+	"fyne.io/fyne/layout"
+	"fyne.io/fyne/theme"
 	"fyne.io/fyne/widget"
 )
 
 func main() {
 	a := app.New()
 	w := a.NewWindow("Hello")
+	l := widget.NewLabel("This is Sample widget.")
+	tb := widget.NewToolbar(
+		widget.NewToolbarAction(theme.HomeIcon(), func() {
+			l.SetText("Select Home Icon!")
+		}),
+		widget.NewToolbarAction(theme.InfoIcon(), func() {
+			l.SetText("Select Info Icon!")
+		}),
+	)
 	w.SetContent(
-		widget.NewScrollContainer(
-			widget.NewVBox(
-				widget.NewButton("One", nil),
-				widget.NewButton("Two", nil),
-				widget.NewButton("Three", nil),
-				widget.NewButton("Four", nil),
-				widget.NewButton("Five", nil),
-				widget.NewButton("Six", nil),
-				widget.NewButton("Seven", nil),
-				widget.NewButton("Eight", nil),
-				widget.NewButton("Nine", nil),
-				widget.NewButton("Ten", nil),
+		fyne.NewContainerWithLayout(
+			layout.NewBorderLayout(
+				nil, tb, nil, nil,
 			),
+			tb,
+			l,
 		),
 	)
+	w.Resize(fyne.NewSize(300, 200))
 	w.ShowAndRun()
 }
